@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Tela principal para cadastro de produtos.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private EditText etName, etCode, etPrice, etQuantity;
@@ -19,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Inicializa o banco de dados Room
         db = AppDatabase.getInstance(this);
 
+        // Associa os componentes da UI com os objetos Java
         etName = findViewById(R.id.etProductName);
         etCode = findViewById(R.id.etProductCode);
         etPrice = findViewById(R.id.etProductPrice);
@@ -28,13 +33,19 @@ public class MainActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnViewList = findViewById(R.id.btnViewList);
 
+        // Botão para salvar o produto
         btnSave.setOnClickListener(v -> saveProduct());
+
+        // Botão para navegar para a tela de listagem
         btnViewList.setOnClickListener(v -> {
             Intent intent = new Intent(this, ProductListActivity.class);
             startActivity(intent);
         });
     }
 
+    /**
+     * Valida e salva os dados do produto no banco de dados.
+     */
     private void saveProduct() {
         String name = etName.getText().toString().trim();
         String code = etCode.getText().toString().trim();

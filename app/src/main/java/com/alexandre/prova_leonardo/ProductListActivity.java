@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * Activity responsável por listar todos os produtos cadastrados no banco de dados.
+ */
 public class ProductListActivity extends AppCompatActivity {
 
     private RecyclerView rvProducts;
@@ -28,9 +31,13 @@ public class ProductListActivity extends AppCompatActivity {
         rvProducts = findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new LinearLayoutManager(this));
 
+        // Carregar os dados do banco para a lista
         loadProducts();
     }
 
+    /**
+     * Busca os produtos no banco de dados e configura o Adapter.
+     */
     private void loadProducts() {
         List<Product> products = db.productDao().getAllProducts();
         ProductAdapter adapter = new ProductAdapter(products);

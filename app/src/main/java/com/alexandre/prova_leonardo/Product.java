@@ -3,16 +3,22 @@ package com.alexandre.prova_leonardo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Entidade que representa a tabela de produtos no banco de dados Room.
+ */
 @Entity(tableName = "products")
 public class Product {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int id; // Identificador único automático
 
-    private String name;
-    private String code;
-    private double price;
-    private int quantity;
+    private String name;      // Nome do produto
+    private String code;      // Código alfanumérico
+    private double price;     // Preço em reais
+    private int quantity;    // Quantidade em estoque
 
+    /**
+     * Construtor para criar um novo produto.
+     */
     public Product(String name, String code, double price, int quantity) {
         this.name = name;
         this.code = code;
