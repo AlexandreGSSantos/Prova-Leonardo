@@ -18,6 +18,12 @@ public class ProductListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
+        // Ativar o botão de voltar na barra superior
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Lista de Produtos");
+        }
+
         db = AppDatabase.getInstance(this);
         rvProducts = findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new LinearLayoutManager(this));
@@ -29,5 +35,11 @@ public class ProductListActivity extends AppCompatActivity {
         List<Product> products = db.productDao().getAllProducts();
         ProductAdapter adapter = new ProductAdapter(products);
         rvProducts.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
