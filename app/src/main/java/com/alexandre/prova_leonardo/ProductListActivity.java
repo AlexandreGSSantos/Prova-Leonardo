@@ -26,6 +26,8 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     private void loadProducts() {
-        // Lógica para carregar produtos será implementada no próximo commit
+        List<Product> products = db.productDao().getAllProducts();
+        ProductAdapter adapter = new ProductAdapter(products);
+        rvProducts.setAdapter(adapter);
     }
 }
